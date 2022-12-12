@@ -58,9 +58,7 @@ def change(data, periods=1):
     'MsgError: data type pandas.DataFrame or pandas.Series'
     """
     
-    if isinstance(data, pd.DataFrame) or isinstance(data, pd.Series):
-        return data.pct_change(periods=periods, fill_method='ffill')
-    else: return ('MsgError: data type pandas.DataFrame or pandas.Series')
+    return data.pct_change(periods=periods, fill_method='ffill')
 
 def change_ln(data, periods=1):
     """
