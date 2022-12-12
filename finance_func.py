@@ -119,8 +119,7 @@ def change_ln(data, periods=1):
     >>> df = pd.DataFrame({
     ...    'TST1': [85, 86, 29],
     ...    'TST2': [36.2, 37.8, 39.9],
-    ...    'TST3': [0.1685, np.nan, 0.1683]},
-    ...    index=np.arange('2005-02-05', '2005-02-08', dtype='datetime64[D]'))
+    ...    'TST3': [0.1685, np.nan, 0.1683]})
     >>> df
        TST1  TST2    TST3
     0    85  36.2  0.1685
