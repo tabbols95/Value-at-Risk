@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 def change(data, periods=1):
     """
@@ -60,7 +61,25 @@ def change(data, periods=1):
     if isinstance(data, pd.DataFrame) or isinstance(data, pd.Series):
         return data.pct_change(periods=periods, fill_method='ffill')
     else: return ('MsgError: data type pandas.DataFrame or pandas.Series')
-        
+
+def change_ln(data, periods=1):
+    """
+    Logarithmic change between the current and a prior element.
+    
+    Parameters
+    ----------
+    data : pandas.DataFrame or pandas.Series
+        Initial data.
+    periods : int, default 1
+        Periods to shift for forming percent change.
+    
+    Returns
+    -------
+    chg_ln : pandas.DataFrame or pandas.Series
+        The same type as the calling object.
+    """
+    
+    return np.log(data/data.shift(periods))
 
 def volatility(returns, periods=1):
     """
