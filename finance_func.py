@@ -21,41 +21,39 @@ def change(data, periods=1):
     --------
     **Series**
     
-    >>> s = pd.Series([20, 25, 27.2], name='TST')
+    >>> s = pd.Series([2.36, np.nan, np.nan, 2.39, 2.25])
     >>> s
-    0    20.0
-    1    25.0
-    2    27.2
-    Name: TST, dtype: float64
+    0    2.36
+    1     NaN
+    2     NaN
+    3    2.39
+    4    2.25
+    dtype: float64
     
     >>> ff.change(s)
-    0      NaN
-    1    0.250
-    2    0.088
-    Name: TST, dtype: float64
+    0         NaN
+    1    0.000000
+    2    0.000000
+    3    0.012712
+    4   -0.058577
+    dtype: float64
     
     **DataFrame**
     
     >>> df = pd.DataFrame({
-    ...    'TST0': [1.365, 1.352, 1.587],
-    ...    'TST1': [865.39, 901.12, 899.02],
-    ...    'TST2': [12.83, np.nan, 12.95]},
-    ...    index=['2022-01-01', '2022-01-02', '2022-01-03'])
+    ...    'TST1': [85, 86, 29],
+    ...    'TST2': [36.2, 37.8, 39.9],
+    ...    'TST3': [0.1685, np.nan, 0.1683]})
     >>> df
-                 TST0    TST1   TST2
-    2022-01-01  1.365  865.39  12.83
-    2022-01-02  1.352  901.12    NaN
-    2022-01-03  1.587  899.02  12.95
+       TST1  TST2    TST3
+    0    85  36.2  0.1685
+    1    86  37.8     NaN
+    2    29  39.9  0.1683
     >>> ff.change(df)
-                     TST0       TST1      TST2
-    2022-01-01        NaN        NaN       NaN
-    2022-01-02  -0.009524   0.041288  0.000000
-    2022-01-03   0.173817  -0.002330  0.009353
-    
-    **Other type data**
-    
-    >>> ff.change(55)
-    'MsgError: data type pandas.DataFrame or pandas.Series'
+            TST1      TST2       TST3
+    0        NaN       NaN        NaN
+    1   0.011765  0.044199   0.000000
+    2  -0.662791  0.055556  -0.001187
     """
     
     return data.pct_change(periods=periods, fill_method='ffill')
